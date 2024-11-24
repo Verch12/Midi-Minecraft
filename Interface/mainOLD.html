@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер MIDI в Minecraft Нотные Блоки</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>MIDI to Minecraft Note Blocks</h1>
+        <p>Конвертируйте ваш MIDI файл в структуру нотных блоков для Minecraft!</p>
+    </header>
+
+    <main>
+        <section class="upload-section">
+            <h2>1. Загрузите ваш MIDI файл</h2>
+            <input type="file" id="file-input" accept=".mid,.midi">
+            <p>Выберите MIDI файл для конвертации. Поддерживаются файлы .mid и .midi.</p>
+        </section>
+
+        <section class="settings-section">
+            <h2>2. Настройки конвертации</h2>
+            <form id="conversion-form">
+                <label for="range">Диапазон нот:</label>
+                <select id="range" name="range">
+                    <option value="C1-B2">C1 до B2</option>
+                    <option value="C2-B3">C2 до B3</option>
+                    <option value="C3-B4">C3 до B4</option>
+                </select>
+
+                <label for="speed">Скорость исполнения:</label>
+                <input type="range" id="speed" name="speed" min="0.5" max="2" step="0.1" value="1">
+                <span id="speed-value">1x</span>
+
+                <button type="submit" id="convert-btn">Конвертировать</button>
+            </form>
+        </section>
+
+        <section class="result-section" id="result-section" style="display: none;">
+            <h2>3. Результат конвертации</h2>
+            <p>Ваши нотные блоки готовы!</p>
+            <a href="#" id="download-link" class="btn">Скачать результат</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MIDI to Minecraft. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Для динамического обновления значения скорости исполнения
+        document.getElementById('speed').addEventListener('input', function() {
+            document.getElementById('speed-value').textContent = this.value + 'x';
+        });
+
+        // Обработчик конвертации
+        document.getElementById('conversion-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('result-section').style.display = 'block';
+            document.getElementById('download-link').href = '#'; // Здесь будет ссылка для скачивания
+        });
+    </script>
+</body>
+</html>
